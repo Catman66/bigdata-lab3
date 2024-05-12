@@ -1,8 +1,6 @@
 package cn.catman;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
-
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
@@ -14,26 +12,19 @@ public class GraphBuilderMapper extends Mapper<LongWritable, Text, Text, Text> {
     throws IOException, InterruptedException
     { 
         
-        Text edge = new Text(), direction = new Text();
+        String p1 = key.toString();
+        String p2 = value.toString();
+        Text edge = new Text();
+        Text direction = new Text();
 
-        StringTokenizer itr = new StringTokenizer(value.toString(), ", \n\t\r\f");
-        
-        
-        for(; itr.hasMoreTokens(); ) {
-            String p1 = itr.nextToken();
-            assert itr.hasMoreTokens();
-            String p2 = itr.nextToken();
-            
-            if (p1.compareTo(p2) < 0) {
-                edge.set(p1 + "@" + p2);
-                direction.set("+");
-            } else if(p1.compareTo(p2) > 0) {
-                edge.set(p2 + "@" + p1);
-                direction.set("-");
-            } else {
-                continue;
-            }
-            context.write(edge, direction);    
-        }
+        if (p1.compareTo(p2) < 0) {
+            edge.set(p1 + "@" + p2);
+            direction.set("+");
+            context.write(edge, direction);   
+        } else if(p1.compareTo(p2) > 0) {
+            edge.set(p2 + "@" + p1);
+            direction.set("-");
+            context.write(edge, direction);   
+        } 
     }
 }

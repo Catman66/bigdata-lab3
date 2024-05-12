@@ -8,6 +8,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import org.apache.hadoop.fs.Path;
@@ -24,8 +25,8 @@ public class LinkAnalyzer
             job.setJobName("analyze link and count triangles");
 
             job.setJarByClass(TriangleCounter.class);
-            job.setInputFormatClass(TextInputFormat.class);
-            job.setMapperClass(LinkAnalyzerMapper.class);
+            job.setInputFormatClass(KeyValueTextInputFormat.class);
+            job.setMapperClass(KeyValuePasser.class);
             job.setReducerClass(LinkAnalyzerReducer.class);
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(Text.class);

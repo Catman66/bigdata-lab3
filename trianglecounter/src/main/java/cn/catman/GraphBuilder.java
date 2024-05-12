@@ -9,6 +9,8 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueLineRecordReader;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import org.apache.hadoop.fs.Path;
@@ -27,9 +29,9 @@ public class GraphBuilder
             Job job = Job.getInstance(conf);
             job.setJobName("building graph");
             
-            
+            conf.set(KeyValueLineRecordReader.KEY_VALUE_SEPARATOR, ", ");
             job.setJarByClass(TriangleCounter.class);
-            job.setInputFormatClass(TextInputFormat.class);
+            job.setInputFormatClass(KeyValueTextInputFormat.class);
             job.setMapperClass(GraphBuilderMapper.class);
             job.setReducerClass(GraphBuilderReducer.class);
             job.setOutputKeyClass(Text.class);
