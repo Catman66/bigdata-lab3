@@ -1,1 +1,5 @@
- /home/2024stu_23/trianglecounter-2.0-SNAPSHOT.jar cn.catman.TriangleCounter /data/triangleCount/web-Google-small.txt /user/2024stu_23/output02
+
+/home/2024stu_23/trianglecounter-2.0-SNAPSHOT.jar cn.catman.TriangleCounter /data/triangleCount/web-Google-small.txt /user/2024stu_23/output02
+
+
+/home/2024stu_23/trianglecounter-2.0-SNAPSHOT.jar cn.catman.TriangleCounter /data/triangleCount/web-Google.txt /user/2024stu_23/output01
