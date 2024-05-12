@@ -3,7 +3,9 @@ echo hdfs and yarn must be initiated, use init.sh to start them
 
 
 input=input
-trianglecounter=/home/catman/bigdata/lab3/trianglecounter
+trianglecounter=$(pwd)/trianglecounter
+rm -r output
+
 
 hdfs dfs -rm -r $input
 hdfs dfs -put $input
@@ -16,6 +18,7 @@ cd $trianglecounter
 hadoop jar $trianglecounter/target/trianglecounter-2.0-SNAPSHOT.jar cn.catman.TriangleCounter $input output
 cd ..
 
-rm -r output
-hdfs dfs -get output
 
+hdfs dfs -get output
+echo result: $(cat output/sum/part-r-00000) 
+echo truth: $(cat truth)

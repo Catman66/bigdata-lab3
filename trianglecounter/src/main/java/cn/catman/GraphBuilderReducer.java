@@ -12,7 +12,6 @@ public class GraphBuilderReducer extends Reducer<Text, Text, Text, Text> {
         throws IOException, InterruptedException { 
         
         Iterator<Text> it = values.iterator();
-        
         Boolean hasPostive = false, hasNegative = false;
         
         while(it.hasNext()) {
